@@ -32,7 +32,15 @@ Forma.prototype = {
         }
     },
     dibujar: function() {
-        
+        var i, ctx = this.context;
+        ctx.strokeStyle = this.color();
+        ctx.beginPath();
+        ctx.moveTo(this.puntos[0].x, this.puntos[0].y);
+        for (let i = 0; i < this.puntos.length; i++) {
+            ctx.lineTo(this.puntos[i].x, this.puntos[i].y);            
+        }
+        ctx.closePath();
+        ctx.stroke();
     },
     color: function() {
         var i, rgb = [];
@@ -42,7 +50,15 @@ Forma.prototype = {
         return 'rgb('+rgb.join(',')+')';
     },
     dibujarLineas: function() {
-        
+        if (this.lineas.length > 0) {
+            return this.lineas
+        }
+        var i,lineas = []
+        for (let i = 0; i < this.puntos.length; i++) {
+            lineas[i] = new Linea(this.puntos[i], this.puntos[i+1]|| this.puntos[0])//con el or verificamos que cierre las lineas            
+        }
+        this.lineas = lineas;
+        return lineas //regresamos lineas que es el objeto
     },
     generaX: function() {
         return Math.floor(Math.random()*this.w);
