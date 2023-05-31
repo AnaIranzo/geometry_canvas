@@ -1,0 +1,13 @@
+body{
+    width: 800px;
+    margin: 0 auto;
+}
+
+canvas{
+    border: 1px dotted black;
+}
+
+canvas{
+    width: 800px;
+    height: 600px;
+}
